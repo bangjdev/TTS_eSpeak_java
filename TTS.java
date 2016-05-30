@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -42,7 +41,7 @@ public class TTS {
 
 	public void say() throws IOException, InterruptedException {
 		String command = "espeak -s " + getSpeed() + " -v " + getVoice() + " -f " + getSourceFile();
-		Process pro = Runtime.getRuntime().exec(command);
+		Runtime.getRuntime().exec(command);
 
 	}
 
