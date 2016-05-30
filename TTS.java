@@ -39,16 +39,17 @@ public class TTS {
 		this.speed = speed;
 	}
 
-	public void say() throws IOException, InterruptedException {
-		String command = "espeak -s " + getSpeed() + " -v " + getVoice() + " -f " + getSourceFile();
-		Runtime.getRuntime().exec(command);
-
+	public void say() throws IOException {
+		Runtime.getRuntime().exec("espeak -s " + getSpeed() + " -v " + getVoice() + " -f " + getSourceFile());
 	}
 
+	public void say(String text) throws IOException {
+		Runtime.getRuntime().exec("espeak -s " + getSpeed() + " -v " + getVoice() + " \"" + text + "\"");
+	}
 	/*
 	 * This method is used to say a part in file, from line head to ass
 	 */
-	public void sayAPart(int head, int ass, boolean wbw) throws IOException, InterruptedException {
+	public void sayAPart(int head, int ass, boolean wbw) throws IOException {
 		// Load file
 		String line[] = new String[100000];
 		int n = 0;
@@ -56,8 +57,6 @@ public class TTS {
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 		String l = br.readLine();
 		while (l != null) {
-			System.out.println(l);
-			Thread.sleep(1000);
 			n++;
 			line[n] = l;
 			l = br.readLine();
@@ -84,4 +83,3 @@ public class TTS {
 		return ass;
 	}
 }
-
